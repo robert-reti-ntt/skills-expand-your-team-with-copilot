@@ -267,6 +267,82 @@ section h3 {
   align-items: center;
 }
 
+/* Social sharing buttons */
+.social-share-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.share-button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.share-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.share-button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.share-twitter {
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
+.share-twitter:hover {
+  background-color: #1DA1F2;
+  color: white;
+}
+
+.share-facebook {
+  border-color: #1877F2;
+  color: #1877F2;
+}
+
+.share-facebook:hover {
+  background-color: #1877F2;
+  color: white;
+}
+
+.share-linkedin {
+  border-color: #0A66C2;
+  color: #0A66C2;
+}
+
+.share-linkedin:hover {
+  background-color: #0A66C2;
+  color: white;
+}
+
+.share-link {
+  border-color: var(--text-secondary);
+  color: var(--text-secondary);
+}
+
+.share-link:hover {
+  background-color: var(--text-secondary);
+  color: white;
+}
+
 /* Buttons */
 .register-button {
   background: linear-gradient(145deg, var(--secondary), var(--secondary-dark));
