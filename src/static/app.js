@@ -503,12 +503,39 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to copy link to clipboard
   function copyShareLink(activityName) {
     const shareUrl = createShareUrl(activityName);
-    navigator.clipboard.writeText(shareUrl).then(() => {
-      showMessage('Link copied to clipboard!', 'success');
-    }).catch(err => {
-      console.error('Failed to copy link:', err);
-      showMessage('Failed to copy link', 'error');
-    });
+    
+    // Check if clipboard API is available
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showMessage('Link copied to clipboard!', 'success');
+      }).catch(err => {
+        console.error('Failed to copy link:', err);
+        showMessage('Failed to copy link', 'error');
+      });
+    } else {
+      // Fallback for browsers that don't support clipboard API
+      // Create a temporary input element
+      const tempInput = document.createElement('input');
+      tempInput.value = shareUrl;
+      tempInput.style.position = 'absolute';
+      tempInput.style.left = '-9999px';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      
+      try {
+        const success = document.execCommand('copy');
+        if (success) {
+          showMessage('Link copied to clipboard!', 'success');
+        } else {
+          showMessage('Please copy the link manually: ' + shareUrl, 'info');
+        }
+      } catch (err) {
+        console.error('Fallback copy failed:', err);
+        showMessage('Please copy the link manually: ' + shareUrl, 'info');
+      } finally {
+        document.body.removeChild(tempInput);
+      }
+    }
   }
 
   // Function to render a single activity card
